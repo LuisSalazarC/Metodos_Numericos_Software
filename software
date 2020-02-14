@@ -57,3 +57,46 @@ public class MetodosNumericos extends JFrame {
         cp.add(panelBotones, BorderLayout.SOUTH);
 
         setVisible(true); }
+        
+        public class TruncarRedondear extends JFrame {
+
+        public TruncarRedondear() {
+            super("¿Qué acción desea realizar?");
+
+            ManejadorEventos manejador2 = new ManejadorEventos();
+            
+            Container contenedor = getContentPane();
+            contenedor.setLayout(new FlowLayout());
+
+            truncar = new JButton("Truncar resultado");
+            contenedor.add(truncar);
+            truncar.addActionListener(manejador2);
+            
+            redondear = new JButton("Redondear resultado");
+            contenedor.add(redondear);
+            redondear.addActionListener(manejador2);
+
+            setSize(350, 80);
+            setVisible(true);
+        }
+    }
+       
+    public class ManejadorEventos implements ActionListener {
+
+        public void actionPerformed(ActionEvent evento) {
+            if (evento.getSource() == cmdAceptar) {
+                valorverdadero=Double.parseDouble(verd.getText());
+                valoraproximado=Double.parseDouble(aprox.getText());
+                valresultanteabsoluto=(valorverdadero-valoraproximado);
+                if (valresultanteabsoluto<0){
+                    valresultanteabsoluto=valresultanteabsoluto*-1;
+                }
+                valresultanterelativo=((valorverdadero-valoraproximado)/valorverdadero);
+              TruncarRedondear tr = new TruncarRedondear();
+            }
+
+            if (evento.getSource() == cmdLimpiar) {
+                verd.setText("");
+                aprox.setText("");
+            }
+            
