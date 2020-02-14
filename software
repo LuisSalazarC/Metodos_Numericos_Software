@@ -137,5 +137,21 @@ public class MetodosNumericos extends JFrame {
     JOptionPane.showMessageDialog(null, "Error absoluto: "+valresultanteabsoluto+"\n"
                                                                 +"Error relativo: "+valresultanterelativo);
                                                                 }
-     
+      if (evento.getSource() == redondear){
+                  numdec=Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de decimales"));
+                  //redondear valor absoluto
+                  BigDecimal red=new BigDecimal(valresultanteabsoluto);
+                  red=red.setScale(numdec, RoundingMode.HALF_EVEN);
+                  valresultanteabsoluto=red.doubleValue();
+                  
+                  //redondear valor relativo
+                  BigDecimal red2=new BigDecimal(valresultanterelativo);
+                  red2=red2.setScale(numdec, RoundingMode.HALF_EVEN);
+                  valresultanteabsoluto=red2.doubleValue();
+                    JOptionPane.showMessageDialog(null, "Error absoluto: "+valresultanteabsoluto+"\n"
+                                                                +"Error relativo: "+valresultanterelativo);
+             }
+        }
+    }
+}//fin de la clase
      
