@@ -112,4 +112,15 @@ public class MetodosNumericos extends JFrame {
                 verd.setText("");
                 aprox.setText("");
             }
-            
+            if (evento.getSource() == cmdLimpiar) {
+                verd.setText("");
+                aprox.setText("");
+            }
+               if (evento.getSource() == truncar) {
+              numdec=Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de decimales"));
+             //truncar valor absoluto
+              int multiplicador=1;
+              for (int i=0; i<numdec;i++){
+                 multiplicador=multiplicador*10;
+             }    
+             
