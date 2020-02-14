@@ -56,7 +56,7 @@ public class MetodosNumericos extends JFrame {
         cp.add(panelDatos, BorderLayout.CENTER);
         cp.add(panelBotones, BorderLayout.SOUTH);
 
-        setVisible(true); }
+        setVisible(true); } //hacemos visible la ventana
         
         public class TruncarRedondear extends JFrame {
 
