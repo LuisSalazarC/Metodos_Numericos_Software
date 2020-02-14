@@ -1,6 +1,6 @@
 public class MetodosNumericos extends JFrame {	
     
-    JLabel valVerdadero, valAproximado, dec, eRel, eAbs, relativo, absoluto;
+    JLabel valVerdadero, valAproximado, dec, eRel, eAbs, relativo, absoluto; //Variables
     JTextField verd, aprox, deci, resAbs, resRel ;
     JButton cmdAceptar, cmdLimpiar;
     JButton truncar, redondear, acep;
@@ -19,7 +19,7 @@ public class MetodosNumericos extends JFrame {
     
     public MetodosNumericos(String titulo) {
         super(titulo);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Creacion de ventana
         setSize(400, 180);
 
         ManejadorEventos manejador = new ManejadorEventos();
