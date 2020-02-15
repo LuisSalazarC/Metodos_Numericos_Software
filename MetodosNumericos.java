@@ -70,5 +70,96 @@ public class MetodosNumericos extends JFrame {
         cp.add(panelBotones, BorderLayout.SOUTH);
 
         setVisible(true); } //hacemos visible la ventana
-        
+         public class TruncarRedondear extends JFrame {
+
+        public TruncarRedondear() {
+            super("¿Qué acción desea realizar?");
+
+            ManejadorEventos manejador2 = new ManejadorEventos();
+            
+            Container contenedor = getContentPane();
+            contenedor.setLayout(new FlowLayout());
+
+            truncar = new JButton("Truncar resultado");
+            contenedor.add(truncar);
+            truncar.addActionListener(manejador2);
+            
+            redondear = new JButton("Redondear resultado");
+            contenedor.add(redondear);
+            redondear.addActionListener(manejador2);
+
+            setSize(350, 80);
+            setVisible(true);
+        }
+    }
+       
+    public class ManejadorEventos implements ActionListener {
+
+        public void actionPerformed(ActionEvent evento) {
+            if (evento.getSource() == cmdAceptar) {
+                valorverdadero=Double.parseDouble(verd.getText());
+                valoraproximado=Double.parseDouble(aprox.getText());
+                valresultanteabsoluto=(valorverdadero-valoraproximado);
+                if (valresultanteabsoluto<0){
+                    valresultanteabsoluto=valresultanteabsoluto*-1;
+                }
+                valresultanterelativo=((valorverdadero-valoraproximado)/valorverdadero);
+              TruncarRedondear tr = new TruncarRedondear();
+            }
+
+            if (evento.getSource() == cmdLimpiar) {
+                verd.setText("");
+                aprox.setText("");
+            }
+               if (evento.getSource() == truncar) {
+              numdec=Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de decimales"));
+             //truncar valor absoluto
+              int multiplicador=1;
+              for (int i=0; i<numdec;i++){
+                 multiplicador=multiplicador*10;
+             }    
+    double decimal=valresultanteabsoluto%1;
+    double entero=valresultanteabsoluto-(valresultanteabsoluto%1);
+    
+    valresultanteabsoluto=valresultanteabsoluto-decimal;
+    decimal=decimal*multiplicador;
+    decimal=decimal-(decimal%1);
+    decimal=decimal/multiplicador;
+    
+    valresultanteabsoluto=(valresultanteabsoluto+decimal);
+    if (valresultanteabsoluto<0){
+        valresultanteabsoluto=valresultanteabsoluto*-1;
+    }
+    
+     //truncar valor relativo
+    double decimal2=valresultanterelativo%1;
+    double entero2=valresultanterelativo-(valresultanterelativo%1);
+    valresultanterelativo=valresultanterelativo-decimal2;
+    decimal2=decimal2*multiplicador;
+    decimal2=decimal2-(decimal2%1);
+    decimal2=decimal2/multiplicador;
+    valresultanterelativo=(valresultanterelativo+decimal2);
+    if (valresultanterelativo<0){
+        valresultanterelativo=valresultanterelativo*-1;
+    }
+    JOptionPane.showMessageDialog(null, "Error absoluto: "+valresultanteabsoluto+"\n"
+                                                                +"Error relativo: "+valresultanterelativo);
+            }
+             if (evento.getSource() == redondear){
+                  numdec=Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de decimales"));
+                  //redondear valor absoluto
+                  BigDecimal red=new BigDecimal(valresultanteabsoluto);
+                  red=red.setScale(numdec, RoundingMode.HALF_EVEN);
+                  valresultanteabsoluto=red.doubleValue();
+                  
+                  //redondear valor relativo
+                  BigDecimal red2=new BigDecimal(valresultanterelativo);
+                  red2=red2.setScale(numdec, RoundingMode.HALF_EVEN);
+                  valresultanteabsoluto=red2.doubleValue();
+                    JOptionPane.showMessageDialog(null, "Error absoluto: "+valresultanteabsoluto+"\n"
+                                                                +"Error relativo: "+valresultanterelativo);
+             }
+        }
+    }
+}//fin de la clase
         
